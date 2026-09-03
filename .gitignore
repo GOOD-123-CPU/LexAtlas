@@ -1,0 +1,69 @@
+# ===== Java / Maven =====
+target/
+*.class
+*.jar
+!mvnw.jar
+*.war
+*.ear
+hs_err_pid*
+replay_pid*
+
+# ===== IDE =====
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.classpath
+.project
+.settings/
+factorypath
+
+# ===== Node / 前端 =====
+node_modules/
+dist/
+dist-ssr/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.timestamp-*.mjs
+
+# ===== 运行时数据（含用户上传内容，禁止入库）=====
+uploads/*
+!uploads/.gitkeep
+
+# ===== 环境变量与机密 =====
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ===== 日志 =====
+logs/
+*.log
+
+# ===== 文档源文件 =====
+# Word 文件可能携带作者/编辑器元数据；开源仓库保留 Markdown/SQL 文档即可。
+docs/*.docx
+
+# ===== 开源发布整理目录 =====
+_opensource/
+
+# ===== 操作系统 =====
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ===== Claude / AI 工具本地配置 =====
+claude-proxy.bat
+CLAUDE.md
+.claude/
+
+# ===== Maven Wrapper 临时文件 =====
+.mvn/wrapper/maven-wrapper.jar
+
+# ===== 本地知识库原始文档（演示数据不入库）=====
+知识库/
