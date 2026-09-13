@@ -180,16 +180,19 @@
             <version>2.3.4</version>
         </dependency>
 
-        <!-- OkHttp (MinIO依赖) -->
+        <!-- OkHttp (MinIO 依赖；WebSocket 代理亦直接使用)
+             okhttp 5.x 为 Kotlin Multiplatform 工程：
+             - com.squareup.okhttp3:okhttp 仅为空壳 artifact（754 B，无 class）
+             - 真实 JVM 实现位于 okhttp-jvm / okio-jvm
+             编译期需显式声明 -jvm 构件。 -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
+            <artifactId>okhttp-jvm</artifactId>
             <version>${okhttp.version}</version>
         </dependency>
-        <!-- okhttp 5.x 将 okio 声明为 runtime scope，编译期引用 okio.ByteString 需显式声明 -->
         <dependency>
             <groupId>com.squareup.okio</groupId>
-            <artifactId>okio</artifactId>
+            <artifactId>okio-jvm</artifactId>
             <version>3.18.2</version>
         </dependency>
 
