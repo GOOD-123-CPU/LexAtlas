@@ -10,7 +10,7 @@ COPY . .
 RUN npm run build-only
 
 # ===== 运行阶段 =====
-FROM nginx:1.25-alpine
+FROM nginx:1.31-alpine
 
 # 时区设置
 RUN apk add --no-cache tzdata && \
