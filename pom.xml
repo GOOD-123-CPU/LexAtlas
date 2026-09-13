@@ -15,7 +15,7 @@
         <spring-boot.version>3.2.3</spring-boot.version>
         <lombok.version>1.18.46</lombok.version>
         <mybatis-plus.version>3.5.7</mybatis-plus.version>
-        <jwt.version>0.12.5</jwt.version>
+        <jwt.version>0.13.0</jwt.version>
         <hutool.version>5.8.26</hutool.version>
         <minio.version>8.5.7</minio.version>
         <langchain4j.version>0.29.1</langchain4j.version>
