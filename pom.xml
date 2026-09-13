@@ -14,7 +14,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>3.2.3</spring-boot.version>
         <lombok.version>1.18.46</lombok.version>
-        <mybatis-plus.version>3.5.7</mybatis-plus.version>
+        <mybatis-plus.version>3.5.17</mybatis-plus.version>
+        <okhttp.version>5.5.0</okhttp.version>
         <jwt.version>0.13.0</jwt.version>
         <hutool.version>5.8.26</hutool.version>
         <minio.version>8.5.7</minio.version>
@@ -62,6 +63,12 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+        <!-- MyBatis-Plus 3.5.9+ 起分页插件拆分为独立模块 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-jsqlparser</artifactId>
             <version>${mybatis-plus.version}</version>
         </dependency>
 
@@ -173,11 +180,20 @@
             <version>2.3.4</version>
         </dependency>
 
-        <!-- OkHttp (MinIO依赖) -->
+        <!-- OkHttp (MinIO 依赖；WebSocket 代理亦直接使用)
+             okhttp 5.x 为 Kotlin Multiplatform 工程：
+             - com.squareup.okhttp3:okhttp 仅为空壳 artifact（754 B，无 class）
+             - 真实 JVM 实现位于 okhttp-jvm / okio-jvm
+             编译期需显式声明 -jvm 构件。 -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>4.12.0</version>
+            <artifactId>okhttp-jvm</artifactId>
+            <version>${okhttp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okio</groupId>
+            <artifactId>okio-jvm</artifactId>
+            <version>3.18.2</version>
         </dependency>
 
         <!-- Spring WebSocket (实时语音识别代理) -->
