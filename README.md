@@ -120,7 +120,7 @@ LexAtlas/
 ### Docker 一键部署（推荐）
 
 ```bash
-git clone https://github.com/<your-org>/LexAtlas.git
+git clone https://github.com/GOOD-123-CPU/LexAtlas.git
 cd LexAtlas
 
 # 配置 LLM API Key（阿里云百炼平台申请，或替换为任意 OpenAI 兼容服务）
@@ -233,7 +233,8 @@ cd lexatlas-frontend && npm install && npm run dev
 - [ ] 法律推理链输出的前端结构化渲染
 - [ ] 回答中的法条引用自动对齐与悬浮原文
 - [ ] 基于 `law_feedback` 反馈数据的检索质量评估闭环
-- [ ] Testcontainers 集成测试与 GitHub Actions CI
+- [x] GitHub Actions：后端编译与测试，前端测试、构建和 lint
+- [ ] Testcontainers 集成测试
 - [ ] 英文界面
 
 ## 🤝 参与贡献
