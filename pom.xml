@@ -17,7 +17,7 @@
         <mybatis-plus.version>3.5.17</mybatis-plus.version>
         <okhttp.version>5.5.0</okhttp.version>
         <jwt.version>0.13.0</jwt.version>
-        <hutool.version>5.8.26</hutool.version>
+        <hutool.version>5.8.47</hutool.version>
         <minio.version>8.5.7</minio.version>
         <langchain4j.version>0.29.1</langchain4j.version>
     </properties>
