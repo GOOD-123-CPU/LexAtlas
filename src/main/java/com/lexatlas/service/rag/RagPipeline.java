@@ -68,7 +68,7 @@ public class RagPipeline {
         String history = buildConversationHistory(conversation.getId());
 
         // ③ 保存用户消息
-        saveMessage(conversation.getId(), "user", question, null, null);
+        saveMessage(conversation.getId(), "user", question, null, null, false);
 
         // ④ 归一化问题，自增频次
         String normalized = ragCacheService.normalize(question);
@@ -163,7 +163,7 @@ public class RagPipeline {
                             // 保存 AI 回答
                             int elapsed = (int) (System.currentTimeMillis() - startTime);
                             LawMessage savedMsg = saveMessage(conversation.getId(), "assistant", answer,
-                                    JSON.toJSONString(sources), JSON.toJSONString(retrievalLog));
+                                    JSON.toJSONString(sources), JSON.toJSONString(retrievalLog), needsFallback);
 
                             // 写入 Redis 缓存（高频时触发）
                             RagCachedResult cacheResult = new RagCachedResult(
@@ -231,7 +231,7 @@ public class RagPipeline {
             int elapsed = (int) (System.currentTimeMillis() - startTime);
             LawMessage cachedMsg = saveMessage(conversation.getId(), "assistant", answer,
                     JSON.toJSONString(cached.getSources()),
-                    JSON.toJSONString(cached.getRetrievalLog()));
+                    JSON.toJSONString(cached.getRetrievalLog()), cached.isFallback());
 
             // 发送完成事件
             Map<String, Object> donePayload = new LinkedHashMap<>();
@@ -272,8 +272,8 @@ public class RagPipeline {
         return conv;
     }
 
-    private LawMessage saveMessage(Long conversationId, String role, String content,
-                                    String sources, String retrievalLog) {
+    LawMessage saveMessage(Long conversationId, String role, String content,
+                           String sources, String retrievalLog, boolean isFallback) {
         LawMessage msg = new LawMessage();
         msg.setConversationId(conversationId);
         msg.setRole(role);
@@ -281,7 +281,7 @@ public class RagPipeline {
         msg.setSources(sources);
         msg.setRetrievalLog(retrievalLog);
         msg.setFeedback(0);
-        msg.setIsFallback(0);
+        msg.setIsFallback(isFallback ? 1 : 0);
         messageMapper.insert(msg);
         return msg;
     }
