@@ -1,5 +1,5 @@
 # ===== 构建阶段 =====
-FROM maven:3-eclipse-temurin-26 AS builder
+FROM maven:3-eclipse-temurin-27 AS builder
 
 WORKDIR /build
 COPY pom.xml .
